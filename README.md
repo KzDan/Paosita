@@ -10,7 +10,7 @@ Una página HTML animada con música, donde caen corazones, flores, mariposas y 
 ## 💡 Cómo verlo en vivo
 Disponible en GitHub Pages:
 
-👉 https://TU-USUARIO.github.io/NOMBRE-DEL-REPOSITORIO/
+👉  https://kzdan.github.io/Paosita/
 
 ## 📁 Archivos
 - `index.html` – página principal
