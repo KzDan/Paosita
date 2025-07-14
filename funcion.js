@@ -43,7 +43,7 @@ document.body.addEventListener('touchstart', e => {
 
 document.body.addEventListener('touchmove', e => {
   const touch = e.touches[0];
-  if (Math.random() < 0.5) {
+  if (Math.random() < 1) {
     crearObjeto(touch.clientX, touch.clientY);
   }
 });
