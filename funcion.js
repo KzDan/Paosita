@@ -1,37 +1,49 @@
 const objetos = [
-      "corazon.png",    // corazón
-      "ramo-de-flores.png",    // flor
-      "Cereza.png",    // cereza
-      "mariposa (1).png",    // mariposa (puedes cambiar por otra url)
-      "moño.png"     // moñito rosa
-    ];
+  "corazon.png",
+  "ramo-de-flores.png",
+  "Cereza.png",
+  "mariposa (1).png",
+  "moño.png"
+];
 
-    function crearObjeto(x, y) {
-      const obj = document.createElement('div');
-      obj.classList.add('objeto');
-      obj.style.backgroundImage = `url('${objetos[Math.floor(Math.random() * objetos.length)]}')`;
-      obj.style.left = x + 'px';
-      obj.style.top = y + 'px';
-      obj.style.animationDuration = (Math.random() * 3 + 3) + 's';
-      document.body.appendChild(obj);
+function crearObjeto(x, y) {
+  const obj = document.createElement('div');
+  obj.classList.add('objeto');
+  obj.style.backgroundImage = `url('${objetos[Math.floor(Math.random() * objetos.length)]}')`;
+  obj.style.left = x + 'px';
+  obj.style.top = y + 'px';
+  obj.style.animationDuration = (Math.random() * 3 + 3) + 's';
+  document.body.appendChild(obj);
 
-      setTimeout(() => obj.remove(), 7000);
-    }
+  setTimeout(() => obj.remove(), 7000);
+}
 
-    // Caída automática controlada para no saturar
-    setInterval(() => {
-      const x = Math.random() * window.innerWidth;
-      crearObjeto(x, -30);
-    }, 50);
+// Caída automática cada 50ms
+setInterval(() => {
+  const x = Math.random() * window.innerWidth;
+  crearObjeto(x, -30);
+}, 50);
 
-    // Añadir objeto en clic
-    document.body.addEventListener('click', e => {
-      crearObjeto(e.clientX, e.clientY);
-    });
+// Eventos para escritorio (click y mousemove)
+document.body.addEventListener('click', e => {
+  crearObjeto(e.clientX, e.clientY);
+});
 
-    // Añadir objeto en movimiento (reduce la probabilidad para no saturar)
-    document.body.addEventListener('mousemove', e => {
-      if (Math.random() < 0.7) { // 10% de probabilidades para crear objeto
-        crearObjeto(e.clientX, e.clientY);
-      }
-    });
+document.body.addEventListener('mousemove', e => {
+  if (Math.random() < 0.1) {
+    crearObjeto(e.clientX, e.clientY);
+  }
+});
+
+// Eventos táctiles para móviles
+document.body.addEventListener('touchstart', e => {
+  const touch = e.touches[0];
+  crearObjeto(touch.clientX, touch.clientY);
+});
+
+document.body.addEventListener('touchmove', e => {
+  const touch = e.touches[0];
+  if (Math.random() < 0.1) {
+    crearObjeto(touch.clientX, touch.clientY);
+  }
+});
